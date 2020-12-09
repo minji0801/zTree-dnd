@@ -15,9 +15,11 @@ const config = {
             // "options"   : {
             //     "encrypt" : false
             // }
-        "user"      : "sa",
+        "user"      : "test",
+        //"user"      : "sa",
         "password"  : "qw12qw12",
-        "server"    : "192.168.0.181",
+        "server"    : "192.168.35.17",
+        //"server"    : "192.168.0.181",
         // "server"    : "192.168.0.135",
         "port"      : 1433,
         "database"  : "aTEST",

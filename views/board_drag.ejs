@@ -146,7 +146,7 @@
             <div class="options"></div>
             
             <div id="tree-list-demo">
-                <div id="bm_tree" style="max-height: 380px;"></div>
+                <ul id="bm_tree" style="max-height: 380px;"></ul>
                 <!-- <div id="dx-paging" style="height: 12px; margin-top: 5px; text-align: center;"></div>  -->
                 <div class="pagination-wrapper clearfix">
                     <ul id="pages_moveByGroup" class="pagination float--right"></ul>
@@ -177,14 +177,21 @@
 
 
 
-        
+    <!-- jQuery library -->    
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Quill Editor library -->
     <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.6/quill.min.js"></script> -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.6/quill.min.js"></script>
+
     <!-- DevExtreme library -->
     <script type="text/javascript" src="/javascripts/dx.all.js"></script>
+
+    <!-- jodit library -->
     <!-- <script type="text/javascript" src="/javascripts/jodit.min.js"></script> -->
     <script type="text/javascript" src="/javascripts/jodit.js"></script>
+
+    <!-- zTree library -->
+	<script type="text/javascript" src="/javascripts/jquery.ztree.core.js"></script>
 
     <script>
 
@@ -530,8 +537,62 @@
         }
 
         function BindData(){
-                                
-            $.ajax({
+            
+		    var setting = {	};
+            
+            var zNodes =[
+                { name:"pNode 01", open:true,
+                    children: [
+                        { name:"pNode 11",
+                            children: [
+                                { name:"leaf node 111"},
+                                { name:"leaf node 112"},
+                                { name:"leaf node 113"},
+                                { name:"leaf node 114"}
+                            ]},
+                        { name:"pNode 12",
+                            children: [
+                                { name:"leaf node 121"},
+                                { name:"leaf node 122"},
+                                { name:"leaf node 123"},
+                                { name:"leaf node 124"}
+                            ]},
+                        { name:"pNode 13 - no child", isParent:true}
+                    ]},
+                { name:"pNode 02",
+                    children: [
+                        { name:"pNode 21", open:true,
+                            children: [
+                                { name:"leaf node 211"},
+                                { name:"leaf node 212"},
+                                { name:"leaf node 213"},
+                                { name:"leaf node 214"}
+                            ]},
+                        { name:"pNode 22",
+                            children: [
+                                { name:"leaf node 221"},
+                                { name:"leaf node 222"},
+                                { name:"leaf node 223"},
+                                { name:"leaf node 224"}
+                            ]},
+                        { name:"pNode 23",
+                            children: [
+                                { name:"leaf node 231"},
+                                { name:"leaf node 232"},
+                                { name:"leaf node 233"},
+                                { name:"leaf node 234"}
+                            ]}
+                    ]},
+                { name:"pNode 3 - no child", isParent:true}
+
+            ];
+
+            $(document).ready(function(){
+                $.fn.zTree.init($("#bm_tree"), setting, zNodes);
+            });
+
+            // DevExtreem
+            /* $.ajax({
                 type: 'POST',
                 url: '/api/callData',
                 data: {pPage: nowPage, pPageCount: dataPerPage},
@@ -847,7 +908,7 @@
                     
                     // $("#bm_tree").dxTreeList("instance").expandAll();
                 }
-            });
+            }); */
         }
 
         // 20.11.06 us.Kim
